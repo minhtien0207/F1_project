@@ -6,7 +6,6 @@ from fastf1.ergast import Ergast
 from fastf1 import plotting
 from fastf1 import utils
 
-import plotly.express as px
 import datetime as dt
 import pandas as pd
 import numpy as np
@@ -187,4 +186,5 @@ plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nA
 
 #Show plot
 #plt.show()
+
 st.pyplot(fig)
