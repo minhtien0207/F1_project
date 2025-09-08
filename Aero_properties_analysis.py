@@ -1,3 +1,5 @@
+pip install fastf1
+
 import fastf1 as ff1
 from fastf1 import plotting
 from fastf1 import utils
@@ -138,3 +140,4 @@ plt.title('Aero properties based on Hungary 2025 Qualification')
 # Show plot
 plt.grid(False)
 plt.show()
+
