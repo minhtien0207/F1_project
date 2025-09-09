@@ -51,7 +51,7 @@ event = st.selectbox(
     'Select the GP', schedule['raceName'])
     
 sess = st.selectbox(
-    'Select the session', ('FP1', 'FP2', 'FP3', 'Qualifying','Sprint Shootout')
+    'Select the session', ('FP1', 'FP2', 'FP3', 'Qualifying','Sprint Qualifying')
 )
 
 session = ff1.get_session(year, event, sess)
@@ -187,6 +187,7 @@ plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nA
 
 #Show plot
 st.pyplot(fig)
+
 
 
 
