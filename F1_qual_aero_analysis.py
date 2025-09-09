@@ -15,13 +15,18 @@ import seaborn as sns
 #%matplotlib inline
 from matplotlib import pyplot as plt
 
-st.write("""
-# Let's look at the Aero properties of 10 F1 car.
-It is a scatterplot of the ten teams, considering the best lap for each based on the telemetry data
-The mean and top speeds from that lap and plot the team as a dot on the chart.
-Going from left to right, we have an increase in the mean lap speed, which means a lower laptime: teams on the left are 'slow', those on the right 'quick'.
-Going from the bottom to the top, we have an increase in top speed: the cars at the bottom have high drag, while those at the top have low drag.
-""")
+#Streamlit display components
+st.header("Formula 1 Aerodynamic analysis")
+st.caption("Inspired by fdataanalysis \nhttps://www.instagram.com/fdataanalysis")
+
+st.text("This analysis aims to look at the relevant aerodynamic properties of the car from each team based on their best lap of the session\n")
+st.text("Assuming different engines always deliver the same power output in their respective fastest lap of the session,\n then we can separated the team performance by the aerodynamic of their cars\n")
+st.text("The following scatterplot take the best lap for each team based on the telemetry data, and plot their top speed over their mean speed\n")
+st.text("Going from left to right, we have an increase in the mean lap speed, which means a lower laptime: teams on the left are slower, those on the right quicker\n")
+st.text("Going from the bottom to the top, we have an increase in top speed: the cars at the bottom have high drag, while those at the top have low drag\n")
+st.caption("Disclaimer: The mean speed is calculated by taking the lap time divided by the track length\n")
+
+st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D")
 
 year = st.selectbox(
     'Select the year', (2024, 2025)
@@ -48,10 +53,8 @@ sess = st.selectbox(
     'Select the session', ('FP1', 'FP2', 'FP3', 'Qualifying')
 )
 
-
 session = ff1.get_session(year, event, sess)
 session.load()
-
 
 #Select the fastest lap of a specific team and get the car telemetry data for that lap.
 team1_lap = session.laps.pick_teams("Red Bull Racing").pick_fastest()
@@ -94,7 +97,6 @@ if (year > 2024):
 elif (year == 2024):
     teams = teams_2024
 
-
 #Create a dictionary for laptimes
 laptimes = {
     'team': teams,
@@ -108,9 +110,7 @@ telemetry = {
     }
 
 #Access the dictionary with the key as the name of the event to get the corresponding track length
-
 track_length = track_length_data.loc[track_length_data['GP'] == event, 'Track length (m)'].values[0]
-
 
 #Create a list to store the results
 results = []
@@ -185,6 +185,5 @@ plt.grid(linestyle='-.', color='#CCCCCC', which='major', axis='both')
 plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nAero performance - based on teams' fastest laps")
 
 #Show plot
-#plt.show()
-
 st.pyplot(fig)
+
