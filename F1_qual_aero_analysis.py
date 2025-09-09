@@ -26,7 +26,8 @@ st.text("From left to right, mean lap speed increases. Higher mean speed means l
 st.text("Going from the bottom to the top, we have an increase in top speed: the cars at the bottom have high drag, while those at the top have low drag\n")
 st.caption("Disclaimer: The mean speed is calculated by taking the lap time divided by the track length\n")
 
-st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D")
+st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D\n")
+st.text("The option of Sprint Shootout appears but will only work for event with a sprint shootout session")
 
 year = st.selectbox(
     'Select the year', (2024, 2025)
@@ -50,7 +51,7 @@ event = st.selectbox(
     'Select the GP', schedule['raceName'])
     
 sess = st.selectbox(
-    'Select the session', ('FP1', 'FP2', 'FP3', 'Qualifying')
+    'Select the session', ('FP1', 'FP2', 'FP3', 'Qualifying','Sprint Shootout')
 )
 
 session = ff1.get_session(year, event, sess)
@@ -186,5 +187,6 @@ plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nA
 
 #Show plot
 st.pyplot(fig)
+
 
 
