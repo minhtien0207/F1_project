@@ -27,7 +27,7 @@ st.text("Going from the bottom to the top, we have an increase in top speed: the
 st.caption("Disclaimer: The mean speed is calculated by taking the lap time divided by the track length\n")
 
 st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D\n")
-st.text("The option of Sprint Shootout appears but will only work for event with a sprint shootout session")
+st.text("The option of Sprint Qualifying appears but will only obviously works for event with a sprint shootout session")
 
 year = st.selectbox(
     'Select the year', (2024, 2025)
@@ -187,6 +187,7 @@ plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nA
 
 #Show plot
 st.pyplot(fig)
+
 
 
 
