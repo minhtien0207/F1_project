@@ -209,7 +209,7 @@ sns.scatterplot(data = df,
                 x = "LapNumber",
                 # = "LapNumber" - normal & fuel-corrected: race overall
                 # = "TyreLife" - fuel-corrected: specific compound/stint
-                y = "LapTime(s)",
+                y = "LapTime(FC)",
                 ax = ax,
                 hue = 'Driver',
                 #   = "Compound" - normal: different compounds of one driver only
@@ -232,13 +232,15 @@ tyre_stints = stints[stints['Driver'].isin(drivs)].groupby('Driver')['Stint'].nu
 #DRAW REGRESSION LINE:
 for dri in drivs:
     n = tyre_stints.loc[dri]
+    style = plotting.get_driver_style(identifier=dri, style= ['color','linestyle'],session = session)
     for i in range (1,n+1):
         sns.regplot(data = df[(laps['Driver']==dri)&(laps['Stint']==i)], #AND-criteria for analysis of specific compound/stint: .loc[(driver) & (compound/stint)]
             x = "LapNumber",
             # = 'LapNumber'
             # = 'TyreLife',
-            y = "LapTime(s)",
-            color = ff1.plotting.get_driver_color(dri, session=session), #fastf1.plotting.get_compound_color('MEDIUM', session=session),
+            y = "LapTime(FC)",
+            color= ff1.plotting.get_driver_color(dri, session=session),
+            line_kws= style,
             ci = None # confidence interval band not displayed
            )
 
