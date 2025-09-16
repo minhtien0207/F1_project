@@ -161,7 +161,7 @@ sns.boxplot(data=finalsamp,
             hue = "Driver", # "Driver", "Team"
             order = peckingorder,
             palette = colourcode,
-            whiskerprops=dict(color="white"),
+            whiskerprops=dict(color="gray"),
             boxprops=dict(edgecolor="white"),
             medianprops=dict(color="white"),
             capprops=dict(color="white"),
@@ -260,4 +260,5 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Disclaimer: In the event that two drivers from the same team are selected, the second selected driver will always have points not represented as circles, and its regression line will be displayed as a dashed line.\n")
+
 
