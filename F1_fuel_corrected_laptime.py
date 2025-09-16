@@ -44,7 +44,7 @@ st.latex(r'''
     Laptime(FC) = Laptime - (N - n°) * fcr * weff
 ''')
 
-st.caption("Disclaimer: Argument can be made this approach to be called 'adjusted based on assumption' rather than 'fuel corrected'.\n")
+st.caption("Disclaimer: Argument can be made for this approach to be called 'adjusted based on assumption' rather than 'fuel corrected'.\n")
 
 st.header("Choose the year and the GP from the side bar on the left to obtain each driver tyre strategies and a boxplot of their non-normalized race pace")
 
@@ -260,3 +260,4 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Disclaimer: In the event that two drivers from the same team are selected, the second selected driver will always have points not represented as circles, and its regression line will be displayed as a dashed line.\n")
+
