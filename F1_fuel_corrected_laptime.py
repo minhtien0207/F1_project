@@ -161,12 +161,12 @@ sns.boxplot(data=finalsamp,
             hue = "Driver", # "Driver", "Team"
             order = peckingorder,
             palette = colourcode,
-            whiskerprops=dict(color="gray"),
-            boxprops=dict(edgecolor="white"),
-            medianprops=dict(color="white"),
-            capprops=dict(color="white"),
-            showmeans=True, meanline=True, meanprops=dict(color='white', linestyle='--'), # show/hide means
-            showfliers= False, flierprops=dict(markerfacecolor='white', markeredgecolor='white') # show/hide outliers & set colour (fill, border)
+            whiskerprops=dict(color="black"),
+            boxprops=dict(edgecolor="black"),
+            medianprops=dict(color="black"),
+            capprops=dict(color="black"),
+            showmeans=True, meanline=True, meanprops=dict(color='black', linestyle='--'), # show/hide means
+            showfliers= False, flierprops=dict(markerfacecolor='white', markeredgecolor='black') # show/hide outliers & set colour (fill, border)
 )
 ax.set_title(f"{session.event.year} {session.event['EventName']}\n{session.name} pace comparison")
 ax.set(ylabel = 'Lap time (secs)')
@@ -260,5 +260,6 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Disclaimer: In the event that two drivers from the same team are selected, the second selected driver will always have points not represented as circles, and its regression line will be displayed as a dashed line.\n")
+
 
 
