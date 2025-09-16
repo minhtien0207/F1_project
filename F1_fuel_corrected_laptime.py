@@ -60,6 +60,8 @@ event = st.sidebar.selectbox(
 
 session = ff1.get_session(year, event, 'Race')
 session.load()
+all_laps = session.laps.pick_wo_box().pick_quicklaps().copy(deep=False)
+all_laps['LapTime(s)'] = all_laps['LapTime'].dt.total_seconds()
 
 ##TYRE STRATEGIES
 laps = session.laps
@@ -191,7 +193,7 @@ drivs = st.sidebar.multiselect(
 weight_eff = 0.03
 fuel_cons_rate = 105 / session.total_laps
 
-df = session.laps.pick_drivers(drivs).pick_wo_box().pick_quicklaps().reset_index()
+df = all_laps.pick_drivers(drivs).reset_index()
 df['LapTime(s)'] = df['LapTime'].dt.total_seconds()
 #teams = ['Red Bull Racing', 'McLaren', 'Ferrari', 'Mercedes']
 #df = session.laps.pick_teams(teams).pick_wo_box().pick_quicklaps().reset_index()
@@ -222,7 +224,8 @@ sns.scatterplot(data = df,
                 #       = [fastf1.plotting.get_driver_color('LEC', session=session), 'w'] - fuel-corrected: example of customization
                 s = 50, # dot size
                 linewidth = 0, # disable dot border
-                legend = 'auto'
+                legend = 'auto',
+                style = 'Driver'
                )
 
 
@@ -241,6 +244,7 @@ for dri in drivs:
             y = "LapTime(FC)",
             color= ff1.plotting.get_driver_color(dri, session=session),
             line_kws= style,
+            scatter = False, #scatter points not drawn, avoiding overlap with scatterplot above
             ci = None # confidence interval band not displayed
            )
 
@@ -254,3 +258,5 @@ plt.legend(loc = 'best') # set location of legend in subplot
 sns.despine(left=True, bottom=True)
 plt.tight_layout()
 st.pyplot(fig)
+
+st.caption("Disclaimer: In the event that two drivers from the same team are selected, the second selected driver will always have points not represented as circles, and its regression line will be displayed as a dashed line.\n")
