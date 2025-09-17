@@ -29,24 +29,24 @@ import pandas as pd
 st.title("Formula 1 Fuel-corrected race pace analysis")
 
 st.text("In motor racing, towards the end of the race, cars get lighter as fuel is consumed, so how should we compare these laps? There is a normalization process called fuel correction, which renders different lap times set by cars more comparable. However, data on fuel consumption of each car per lap is logically unavailable for us fans, so assumptions have to be made.\n")
-st.text("The first assumption aim to simplified fuel consumption in each car, where every car will start the race with the maximum fuel allowance, and end the race with the minimum allowed level. The current F1's regulation allows each car to hold 110kg of fuel, and a minimum of 5kg of reserve at the end for random check, thus 105kg to be used. \n")
-st.text("Consequently, the fuel consumption rate (fcr) can be calculate for each circuit, based on its length, by dividing 105 kg of fuel to the circuit length: \n")
+st.text("The first assumption aims to simplify fuel consumption of each car, where every car will start the race with the maximum, and end the race with the minimum fuel allowance. The current F1's regulation allows each car to hold 110 kg of fuel, and requires a minimum reserve of 5 kg at the end for random scrutiny check, therefore 105kg are to be used. \n")
+st.text("Consequently, the fuel consumption rate (fcr) can be calculated for each circuit, based on its length, by dividing 105 kg of fuel to the circuit length: \n")
 
 st.latex(r'''
     fcr = \frac{105}{length}
 ''')
 
-st.text("The second assumption is that 1kg of fuel slows the car down by 0.03s (weff), based on this reddit thread: ")
+st.text("The second assumption is that 1 kg of fuel slows the car down by 0.03 seconds (weff), based on this reddit thread: ")
 st.page_link("https://www.reddit.com/r/F1Technical/comments/11oskuy/computation_of_fuelcorrected_lap_time", label = "Reddit", icon  ="🌎")
 
-st.text("The laptime adjustment of a specific lap can be made by substracting the lap time by the product of the difference between the total lap of the GP (N) and the current lap number (n°), the fcr and the weight effect (weff) :")
+st.text("The laptime adjustment of a specific lap can be made by substracting the lap time by the product of the difference between the total lap of the GP (N) and the current lap number (n°), the fuel consumption rate (fcr) and the weight effect (weff):")
 st.latex(r'''
     Laptime(FC) = Laptime - (N - n°) * fcr * weff
 ''')
 
 st.caption("Disclaimer: Argument can be made for this approach to be called 'adjusted based on assumption' rather than 'fuel corrected'.\n")
 
-st.header("Choose the year and the GP from the side bar on the left to obtain each driver tyre strategies and a boxplot of their non-normalized race pace")
+st.header("Choose the year and the GP from the side bar on the left to obtain drivers' tyre strategies and a boxplot of their non-normalized race pace")
 
 year = st.sidebar.radio(
     'Select the year', (2024, 2025)
@@ -260,6 +260,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Disclaimer: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
