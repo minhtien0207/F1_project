@@ -166,7 +166,7 @@ sns.boxplot(data=finalsamp,
             medianprops = dict(color="black"),
             capprops = dict(color="black"),
             showmeans = True, meanline = True, meanprops = dict(color='black', linestyle='--'), # show/hide means
-            showfliers = True, flierprops = dict(markerfacecolor='white', markeredgecolor='black') # show/hide outliers & set colour (fill, border)
+            showfliers = False, flierprops = dict(markerfacecolor='white', markeredgecolor='black') # show/hide outliers & set colour (fill, border)
 )
 ax.set_title(f"{session.event.year} {session.event['EventName']}\n{session.name} pace comparison")
 ax.set(ylabel = 'Lap time (secs)')
@@ -260,6 +260,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Remark: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
