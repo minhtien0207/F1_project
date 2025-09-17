@@ -156,17 +156,17 @@ colourcode = {driver: ff1.plotting.get_driver_color(driver, colormap='official',
 
 fig, ax = plt.subplots(figsize=(10, 10))
 sns.boxplot(data=finalsamp,
-            x="Driver", # set x-label: "Driver","Team"
-            y="TimeSeconds", # set y-label
+            x = "Driver", # set x-label: "Driver","Team"
+            y = "TimeSeconds", # set y-label
             hue = "Driver", # "Driver", "Team"
             order = peckingorder,
             palette = colourcode,
-            whiskerprops=dict(color="black"),
-            boxprops=dict(edgecolor="black"),
-            medianprops=dict(color="black"),
-            capprops=dict(color="black"),
-            showmeans=True, meanline=True, meanprops=dict(color='black', linestyle='--'), # show/hide means
-            showfliers= False, flierprops=dict(markerfacecolor='white', markeredgecolor='black') # show/hide outliers & set colour (fill, border)
+            whiskerprops = dict(color="black"),
+            boxprops = dict(edgecolor="black"),
+            medianprops = dict(color="black"),
+            capprops = dict(color="black"),
+            showmeans = True, meanline = True, meanprops = dict(color='black', linestyle='--'), # show/hide means
+            showfliers = True, flierprops = dict(markerfacecolor='white', markeredgecolor='black') # show/hide outliers & set colour (fill, border)
 )
 ax.set_title(f"{session.event.year} {session.event['EventName']}\n{session.name} pace comparison")
 ax.set(ylabel = 'Lap time (secs)')
@@ -204,7 +204,7 @@ laps = pd.DataFrame({'Driver': df['Driver'], 'Team': df['Team'], 'LapNumber': df
 
 #DRAW SCATTER PLOT:
 fig, ax = plt.subplots(figsize=(10, 10))
-plt.suptitle(f"{session.event.year} {session.event['EventName']}, {session.name}\n Tyre degradration analysis - all stint (separated regression line for each stint)") #, {compound} compound
+plt.suptitle(f"{session.event.year} {session.event['EventName']}, {session.name}\n Tyre degradration analysis - separated regression line for each stint") #, {compound} compound
 sns.scatterplot(data = df,
                 #    = laps - normal & fuel-corrected: race overall
                 #    = laps.loc[laps['Compound']==compound] - fuel-corrected: specific compound/stint
@@ -248,7 +248,7 @@ for dri in drivs:
             ci = None # confidence interval band not displayed
            )
 
-ax.set_xlabel("Tyre age (laps)") #raace overall analysis: "Lap Number"; specific compound/stint analysis: "Tyre Age (laps)"
+ax.set_xlabel("Lap Number") #raace overall analysis: "Lap Number"; specific compound/stint analysis: "Tyre Age (laps)"
 ax.set_ylabel("Fuel-corrected laptime (secs)")
 #ax.yaxis.set_ticks(np.arange(np.floor(laps['LapTime(s)'].min()), np.ceil(laps['LapTime(s)'].max()), 0.2))
 plt.grid(linestyle='--', color='#808080', which='major', axis='both') #major grid lines settings
@@ -260,6 +260,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Remark: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
