@@ -259,7 +259,8 @@ sns.despine(left=True, bottom=True)
 plt.tight_layout()
 st.pyplot(fig)
 
-st.caption("Disclaimer: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+st.caption("Remark: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
