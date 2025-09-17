@@ -29,7 +29,7 @@ import pandas as pd
 st.title("Formula 1 Fuel-corrected race pace analysis")
 
 st.text("In motor racing, towards the end of the race, cars get lighter as fuel is consumed, so how should we compare these laps? There is a normalization process called fuel correction, which renders different lap times set by cars more comparable. However, data on fuel consumption of each car per lap is logically unavailable for us fans, so assumptions have to be made.\n")
-st.text("The first assumption aims to simplify fuel consumption of each car, where every car will start the race with the maximum fuel allowance, and end the race with the minimum requirement. The current F1's regulation allows each car to hold 110 kg of fuel, and requires a minimum reserve of 5 kg at the end for random scrutiny check, therefore 105kg are to be used. \n")
+st.text("The first assumption aims to simplify fuel consumption of each car, where every car will start the race with the maximum fuel allowance, and end the race with the minimum requirement. The current F1's regulation allows each car to hold 110 kg of fuel, and requires a minimum reserve of 5 kg at the end for random scrutiny check. Therefore, 105 kg are to be used. \n")
 st.text("Consequently, the fuel consumption rate (fcr) can be calculated for each circuit, based on its length, by dividing 105 kg of fuel to the circuit length: \n")
 
 st.latex(r'''
@@ -260,6 +260,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Disclaimer: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
