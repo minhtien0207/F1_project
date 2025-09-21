@@ -153,7 +153,7 @@ for team, mean_speed, top_speed in zip(results['Team'], results['Mean speed (km/
     plt.text(mean_speed - 0.1, top_speed + 0.1, team, fontsize=8) # Annotate the team name: plt.text(x coordinate, y coordinate, team name, fontsize)
 
 #Calculate the center of the plot
-center_x = np.round((results['Mean speed (km/h)'].min() + results['Mean speed (km/h)'].max()) / 2)
+center_x = np.round(((results['Mean speed (km/h)'].min() + results['Mean speed (km/h)'].max()) / 2) * 2) / 2
 center_y = (results['Top speed (km/h)'].min() + results['Top speed (km/h)'].max()) / 2
 
 #Arrows and labels for directions, centered
@@ -187,6 +187,7 @@ plt.title(f"{session.event.year} {session.event['EventName']}, {session.name}\nA
 
 #Show plot
 st.pyplot(fig)
+
 
 
 
