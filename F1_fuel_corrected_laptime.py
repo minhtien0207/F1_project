@@ -49,7 +49,7 @@ st.caption("Disclaimer: Argument can be made for this approach to be called 'adj
 st.header("Choose the year and the GP from the side bar on the left to obtain drivers' tyre strategies and a boxplot of their non-normalized race pace")
 
 year = st.sidebar.radio(
-    'Select the year', (2024, 2025)
+    'Select the year', (2024, 2025,2026)
 )
 
 #Get the schedule of the chosen year
@@ -260,6 +260,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.caption("Remark: In the event that two drivers from the same team are selected, the regression line of the \"second\" driver (the one with the higher racing number) will be displayed as a dashed line.\n")
+
 
 
 
