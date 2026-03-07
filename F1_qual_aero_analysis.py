@@ -252,6 +252,45 @@ boxed_text(ax, center_x + (xmax-center_x)*0.55,
            "High Downforce",
            fontsize=9)
 
+# ----- OLD GRAPHIC STYLE -----
+#Calculate the center of the plot
+#center_x = np.round((results['Mean speed (km/h)'].min() + results['Mean speed (km/h)'].max()) / 2)
+#center_y = (results['Top speed (km/h)'].min() + results['Top speed (km/h)'].max()) / 2
+
+#Calculate length of arrows and position of labels
+#x_left = np.floor(results['Mean speed (km/h)'].min() - center_x)
+#x_right = np.ceil(results['Mean speed (km/h)'].max() - center_x)
+#if(np.absolute(x_left)<np.absolute(x_right)):
+#    x_left = x_left - 1
+#elif(np.absolute(x_left)>np.absolute(x_right)):
+#    x_right = x_right + 1
+#length_y = results['Top speed (km/h)'].max() - center_y
+
+#Arrows for directions, centered
+#plt.arrow(center_x, center_y, x_right, 0, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # right: Quick
+#plt.arrow(center_x, center_y, x_left, 0, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # left: Slow
+#plt.arrow(center_x, center_y, 0, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # up: Low Drag
+#plt.arrow(center_x, center_y, 0, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # down: High Drag
+
+#Labels for directions
+#plt.text(center_x + x_right, center_y - 0.1, 'Quick', ha='right', va='top', fontsize=10)
+#plt.text(center_x + x_left, center_y - 0.1, 'Slow', ha='left', va='top', fontsize=10)
+#plt.text(center_x, center_y + (length_y + 0.1), 'Low Drag', ha='center', fontsize=10)
+#plt.text(center_x, center_y - (length_y + 0.1), 'High Drag', ha='center', va='top', fontsize=10)
+
+#Diagonal arrows for aero efficiency
+#plt.arrow(center_x, center_y, x_right, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Top-right: High Efficiency
+#plt.arrow(center_x, center_y, x_left, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Top-left: Low Downforce
+#plt.arrow(center_x, center_y, x_left, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Bottom-left: Low Efficiency
+#plt.arrow(center_x, center_y, x_right, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Bottom-right: High downforce 
+
+#Labels for diagonal directions
+#plt.text(center_x + x_right, center_y + (length_y + 0.1), 'High Efficiency', ha='right', fontsize=10)
+#plt.text(center_x + x_left, center_y + (length_y + 0.1), 'Low Downforce', ha='left', fontsize=10)
+#plt.text(center_x + x_left, center_y - (length_y + 0.1), 'Low Efficiency', ha='left', va='top', fontsize=10)
+#plt.text(center_x + x_right, center_y - (length_y + 0.1), 'High Downforce', ha='right', va='top', fontsize=10)
+
+
 # ----- STYLE -----
 ax.grid(linestyle='-.', color='#CCCCCC')
 
@@ -266,5 +305,6 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
+
 
 
