@@ -9,6 +9,7 @@ from fastf1 import utils
 import datetime as dt
 import pandas as pd
 import numpy as np
+from adjustText import adjust_text
 
 import seaborn as sns
 
@@ -315,6 +316,7 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
+
 
 
 
