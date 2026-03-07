@@ -164,14 +164,27 @@ print(results.sort_values(by='Mean speed (km/h)', ascending=False))
 #Make a color palette associating team names to hex codes
 team_palette = {team: ff1.plotting.get_team_color(team, session=session) for team in teams}
 
-def boxed_text(ax, x, y, text, **kwargs):
+def boxed_text_field(ax, x, y, text, **kwargs):
+    ax.text(
+        x, y, text,
+        color="white",
+        bbox=dict(
+        facecolor="gray",
+        edgecolor="none",
+        alpha=0.55,
+        boxstyle="round,pad=0.35"
+        ),
+        **kwargs
+    )
+
+def boxed_text_axe(ax, x, y, text, **kwargs):
     ax.text(
         x, y, text,
         color="white",
         bbox=dict(
         facecolor="black",
         edgecolor="none",
-        alpha=0.8,
+        alpha=0.55,
         boxstyle="round,pad=0.35"
         ),
         **kwargs
@@ -222,32 +235,32 @@ ymin, ymax = ax.get_ylim()
 x_offset = (xmax - xmin) * 0.03
 y_offset = (ymax - ymin) * 0.03
 
-boxed_text(ax, xmax - x_offset, center_y + y_offset, "Quick", ha="right", fontsize=9)
-boxed_text(ax, xmin + x_offset, center_y + y_offset, "Slow", ha="left", fontsize=9)
+boxed_text_field(ax, xmax - x_offset, center_y, "Quick", ha="right", fontsize=9)
+boxed_text_field(ax, xmin + x_offset, center_y, "Slow", ha="left", fontsize=9)
 
-boxed_text(ax, center_x, ymax - y_offset, "Low Drag", ha="center", fontsize=9)
-boxed_text(ax, center_x, ymin + y_offset, "High Drag", ha="center", fontsize=9)
+boxed_text_field(ax, center_x, ymax - y_offset, "Low Drag", ha="center", fontsize=9)
+boxed_text_field(ax, center_x, ymin + y_offset, "High Drag", ha="center", fontsize=9)
 
 
 # ----- DIAGONAL LABELS -----
-boxed_text(ax, center_x + (xmax-center_x)*0.55,
+boxed_text_axe(ax, center_x + (xmax-center_x)*0.55,
            center_y + (ymax-center_y)*0.55,
            "High Efficiency",
            fontsize=9)
 
-boxed_text(ax, center_x - (center_x-xmin)*0.55,
+boxed_text_axe(ax, center_x - (center_x-xmin)*0.55,
            center_y + (ymax-center_y)*0.55,
            "Low Downforce",
            fontsize=9,
            ha="right")
 
-boxed_text(ax, center_x - (center_x-xmin)*0.55,
+boxed_text_axe(ax, center_x - (center_x-xmin)*0.55,
            center_y - (center_y-ymin)*0.55,
            "Low Efficiency",
            fontsize=9,
            ha="right")
 
-boxed_text(ax, center_x + (xmax-center_x)*0.55,
+boxed_text_axe(ax, center_x + (xmax-center_x)*0.55,
            center_y - (center_y-ymin)*0.55,
            "High Downforce",
            fontsize=9)
@@ -290,13 +303,10 @@ boxed_text(ax, center_x + (xmax-center_x)*0.55,
 #plt.text(center_x + x_left, center_y - (length_y + 0.1), 'Low Efficiency', ha='left', va='top', fontsize=10)
 #plt.text(center_x + x_right, center_y - (length_y + 0.1), 'High Downforce', ha='right', va='top', fontsize=10)
 
-
 # ----- STYLE -----
 ax.grid(linestyle='-.', color='#CCCCCC')
-
 ax.set_xlabel("Mean Speed (km/h)")
 ax.set_ylabel("Top Speed (km/h)")
-
 ax.set_title(
     f"{session.event.year} {session.event['EventName']} - {session.name}\n"
     "Aero Performance Map (Fastest Laps)"
@@ -305,6 +315,7 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
+
 
 
 
