@@ -17,10 +17,23 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 import matplotlib.patheffects as path_effects
 
+#Streamlit display components
+st.header("Formula 1 Aerodynamic analysis")
+st.caption("Inspired by fdataanalysis \nhttps://www.instagram.com/fdataanalysis")
+
+st.text("This analysis looks at the relevant aerodynamic properties of each team's car. It uses their best lap of the session.\n")
+st.text("Assuming different engines always deliver the same power output in their respective fastest lap of the session, then we can separate the team performance by the aerodynamics of their cars.\n")
+st.text("The following scatterplot uses the best lap for each team based on telemetry data. It shows their top speed versus mean speed.\n")
+st.text("From left to right, mean lap speed increases. Higher mean speed means lower lap time: teams on the left are slower, those on the right are quicker.\n")
+st.text("Going from the bottom to the top, we have an increase in top speed: the cars at the bottom have high drag, while those at the top have low drag\n")
+st.caption("Disclaimer: The mean speed is calculated by taking the lap time divided by the track length\n")
+
+st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D\n")
+st.text("The option of Sprint Qualifying appears but will only obviously works for event with a sprint shootout session")
+
 year = st.selectbox(
     'Select the year', (2022, 2023, 2024, 2025, 2026)
 )
-
 #It would be best to to able to select this schedule and 
 schedule = Ergast().get_race_schedule(season=year)
 
@@ -267,3 +280,4 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
+
