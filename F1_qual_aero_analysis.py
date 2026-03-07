@@ -180,18 +180,34 @@ def boxed_text(ax, x, y, text, **kwargs):
 fig, ax = plt.subplots(figsize=(10, 8))
 
 # Scatter plot
+texts = []
+
 for team, mean_speed, top_speed in zip(
-    results['Team'],
-    results['Mean speed (km/h)'],
-    results['Top speed (km/h)']
-):
+        results['Team'],
+        results['Mean speed (km/h)'],
+        results['Top speed (km/h)']):
+
     color = team_palette.get(team, "black")
-    
-    ax.scatter(mean_speed, top_speed, s=120, color=color, edgecolor='black', zorder=3)
-    ax.text(mean_speed, top_speed, team,
-            fontsize=10, ha='center', va='bottom')
 
+    ax.scatter(mean_speed, top_speed,
+               s=120,
+               color=color,
+               edgecolor="black",
+               linewidth=0.6,
+               zorder=3)
 
+    txt = ax.text(mean_speed, top_speed, team,
+                  fontsize=9,
+                  ha='center',
+                  va='center')
+
+    texts.append(txt)
+
+adjust_text(
+    texts,
+    arrowprops=dict(arrowstyle="-", color='gray', lw=0.5),
+    ax=ax
+)    
 # ----- CENTER -----
 center_x = results['Mean speed (km/h)'].mean()
 center_y = results['Top speed (km/h)'].mean()
@@ -250,4 +266,5 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
+
 
