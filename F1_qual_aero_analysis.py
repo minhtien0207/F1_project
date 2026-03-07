@@ -17,19 +17,6 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 import matplotlib.patheffects as path_effects
 
-st.header("Formula 1 Aerodynamic analysis")
-st.caption("Inspired by fdataanalysis \nhttps://www.instagram.com/fdataanalysis")
-
-st.text("This analysis looks at the relevant aerodynamic properties of each team's car. It uses their best lap of the session.\n")
-st.text("Assuming different engines always deliver the same power output in their respective fastest lap of the session, then we can separate the team performance by the aerodynamics of their cars.\n")
-st.text("The following scatterplot uses the best lap for each team based on telemetry data. It shows their top speed versus mean speed.\n")
-st.text("From left to right, mean lap speed increases. Higher mean speed means lower lap time: teams on the left are slower, those on the right are quicker.\n")
-st.text("Going from the bottom to the top, we have an increase in top speed: the cars at the bottom have high drag, while those at the top have low drag\n")
-st.caption("Disclaimer: The mean speed is calculated by taking the lap time divided by the track length\n")
-
-st.text("Choose the year, the circuit and the session to analyze, and be patient for the plot to appears :D\n")
-st.text("The option of Sprint Qualifying appears but will only obviously works for event with a sprint shootout session")
-
 year = st.selectbox(
     'Select the year', (2022, 2023, 2024, 2025, 2026)
 )
@@ -266,48 +253,12 @@ boxed_text_axe(ax, center_x + (xmax-center_x)*0.55,
            "High Downforce",
            fontsize=9)
 
-# ----- OLD GRAPHIC STYLE -----
-#Calculate the center of the plot
-#center_x = np.round((results['Mean speed (km/h)'].min() + results['Mean speed (km/h)'].max()) / 2)
-#center_y = (results['Top speed (km/h)'].min() + results['Top speed (km/h)'].max()) / 2
-
-#Calculate length of arrows and position of labels
-#x_left = np.floor(results['Mean speed (km/h)'].min() - center_x)
-#x_right = np.ceil(results['Mean speed (km/h)'].max() - center_x)
-#if(np.absolute(x_left)<np.absolute(x_right)):
-#    x_left = x_left - 1
-#elif(np.absolute(x_left)>np.absolute(x_right)):
-#    x_right = x_right + 1
-#length_y = results['Top speed (km/h)'].max() - center_y
-
-#Arrows for directions, centered
-#plt.arrow(center_x, center_y, x_right, 0, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # right: Quick
-#plt.arrow(center_x, center_y, x_left, 0, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # left: Slow
-#plt.arrow(center_x, center_y, 0, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # up: Low Drag
-#plt.arrow(center_x, center_y, 0, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray') # down: High Drag
-
-#Labels for directions
-#plt.text(center_x + x_right, center_y - 0.1, 'Quick', ha='right', va='top', fontsize=10)
-#plt.text(center_x + x_left, center_y - 0.1, 'Slow', ha='left', va='top', fontsize=10)
-#plt.text(center_x, center_y + (length_y + 0.1), 'Low Drag', ha='center', fontsize=10)
-#plt.text(center_x, center_y - (length_y + 0.1), 'High Drag', ha='center', va='top', fontsize=10)
-
-#Diagonal arrows for aero efficiency
-#plt.arrow(center_x, center_y, x_right, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Top-right: High Efficiency
-#plt.arrow(center_x, center_y, x_left, length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Top-left: Low Downforce
-#plt.arrow(center_x, center_y, x_left, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Bottom-left: Low Efficiency
-#plt.arrow(center_x, center_y, x_right, -length_y, head_width=0.1, head_length=0.1, fc='gray', ec='gray')  # Bottom-right: High downforce 
-
-#Labels for diagonal directions
-#plt.text(center_x + x_right, center_y + (length_y + 0.1), 'High Efficiency', ha='right', fontsize=10)
-#plt.text(center_x + x_left, center_y + (length_y + 0.1), 'Low Downforce', ha='left', fontsize=10)
-#plt.text(center_x + x_left, center_y - (length_y + 0.1), 'Low Efficiency', ha='left', va='top', fontsize=10)
-#plt.text(center_x + x_right, center_y - (length_y + 0.1), 'High Downforce', ha='right', va='top', fontsize=10)
-
 # ----- STYLE -----
 ax.grid(linestyle='-.', color='#CCCCCC')
+
 ax.set_xlabel("Mean Speed (km/h)")
 ax.set_ylabel("Top Speed (km/h)")
+
 ax.set_title(
     f"{session.event.year} {session.event['EventName']} - {session.name}\n"
     "Aero Performance Map (Fastest Laps)"
@@ -316,8 +267,3 @@ ax.set_title(
 plt.tight_layout()
 
 st.pyplot(fig)
-
-
-
-
-
