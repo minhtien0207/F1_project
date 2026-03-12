@@ -33,7 +33,7 @@ with col1:
 
 with col2:
     session_type = st.selectbox(
-    'Please only select Sprint for track with sprint qualifying session :', ('FP1','FP2','FP3','Qualifying','Sprint Qualifying')
+    'Please only select Sprint for track with sprint qualifying session :', ('FP1','FP2','FP3','Sprint Qualifying','Qualifying')
 )
 
 #Load the session
@@ -318,5 +318,6 @@ st.dataframe(
     use_container_width=True,
     hide_index=True
 )
+
 
 
