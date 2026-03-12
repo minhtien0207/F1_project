@@ -15,8 +15,8 @@ from scipy.ndimage import gaussian_filter1d
 #Header display and select box
 st.header("Formula 1 Hotlap comparison")
 st.text("This analysis compare the quickest qualifying lap between two drivers over the circuit map.\n")
-st.text("The color of each corner number indicate the faster driver over.\n")
-st.text("The table at the end compare the time-gain over every corner, feel free to sort by corner number or by the time delta.\n")
+st.text("The color of each corner number indicates the faster driver over that corner.\n")
+st.text("The table at the end compare the time-gain over every corner, feel free to sort by corner number or by the gain-time.\n")
 
 #Year and event selection
 year = st.selectbox(
@@ -318,3 +318,4 @@ st.dataframe(
     use_container_width=True,
     hide_index=True
 )
+
