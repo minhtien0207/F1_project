@@ -20,8 +20,8 @@ import pandas as pd
 # the misc_mpl_mods option enables minor grid lines which clutter the plot
 #ff1.plotting.setup_mpl(color_scheme='fastf1') #color_scheme='official' or 'fastf1'
 
-ff1.Cache.clear_cache('cache')
-ff1.Cache.enable_cache('cache')
+#ff1.Cache.clear_cache('cache')
+#ff1.Cache.enable_cache('cache')
 
 #Compound names are BLOCKED LETTERS
 
