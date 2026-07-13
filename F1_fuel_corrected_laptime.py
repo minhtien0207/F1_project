@@ -46,7 +46,7 @@ if session is None:
     st.stop()
 
 # Preprocess laps
-all_laps = session.laps.pick_wo_box().pick_quicklaps().copy(deep = False)
+all_laps = session.laps.pick_wo_box().pick_quicklaps()
 all_laps['LapTime(s)'] = all_laps['LapTime'].dt.total_seconds()
 
 # Tyre strategies visualization
