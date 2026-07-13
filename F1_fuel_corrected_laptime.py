@@ -10,7 +10,7 @@ import pandas as pd
 
 # Setup
 ff1.plotting.setup_mpl(color_scheme='fastf1')
-ff1.Cache.enable_cache('cache')
+#ff1.Cache.enable_cache('cache')
 
 # Streamlit UI
 st.title("Formula 1 Fuel-Corrected Race Pace Analysis")
